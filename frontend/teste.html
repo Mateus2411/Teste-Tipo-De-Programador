@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/reset.css" />
     <title>Teste</title>
   </head>
   <style>
@@ -22,87 +23,119 @@
       color: #e6e6e6;
     }
 
-    /* ---------- CARD DE CADASTRO ---------- */
-    .cadastro {
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      justify-content: center;
-      align-items: center;
+    main {
+      width: 100%;
+      max-width: 420px;
+    }
 
+    /* CONTAINER DO CARD */
+    .card {
       background: #000;
       padding: 2.7rem 3rem;
       border-radius: 18px;
-      width: 380px;
-
       border: 1px solid #1f2329;
       box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+      display: none;
+      flex-direction: column;
+      gap: 1.2rem;
       animation: fadeIn 0.3s ease;
+      align-items: center;
+    }
+    .ativo {
+      display: flex;
     }
 
-    /* ---------- INPUTS ---------- */
-    .cadastro input {
+    /* INPUT */
+    .card input {
       width: 100%;
       padding: 0.9rem 1rem;
       border-radius: 10px;
       outline: none;
-
       border: 1.5px solid #2e2e2e;
       background: #111;
       color: #fff;
       transition: 0.2s;
+      margin-bottom: 0.5rem;
     }
 
-    .cadastro input::placeholder {
+    .card input::placeholder {
       color: #777;
     }
 
-    .cadastro input:focus {
+    .card input:focus {
       border-color: #4a73ff;
       background: #0e0e0e;
     }
 
-    /* ---------- BOTÃO ---------- */
-    .cadastro button,
-    .cadastro input[type="submit"] {
+    /* BOTÃO */
+    .card button,
+    .card input[type="submit"] {
       width: 100%;
       padding: 0.9rem;
       margin-top: 0.5rem;
-
       background: #4a73ff;
       color: #fff;
       border: none;
       border-radius: 10px;
-
       font-size: 1rem;
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
     }
-    .cadastro input[type="text"], .cadastro input[type="password"]{
-        margin-bottom: 0.5rem;
-    }
 
-    .cadastro button:hover,
-    .cadastro input[type="submit"]:hover {
+    .card button:hover,
+    .card input[type="submit"]:hover {
       background: #3b5fe0;
       transform: translateY(-2px);
     }
-
-    /* ---------- LOGIN ---------- */
-    .login {
-      display: none;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      width: 100vw;
+    .senha-wrapper {
+      position: relative;
+      width: 100%;
     }
 
-    .ativo {
-      display: flex;
+    .senha-wrapper input {
+      width: 100%;
+      padding-right: 40px;
     }
 
-    /* ---------- ANIMAÇÃO ---------- */
+    .toggleSenha {
+      position: absolute;
+      right: 2px;
+      top: 44%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      font-size: 18px;
+      user-select: none;
+      color: #aaa;
+    }
+
+    .toggleSenha:hover {
+      color: #fff;
+    }
+
+    /* TEXTO DO LINK */
+    .switch {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+
+    .switch a {
+      color: #4a73ff;
+      text-decoration: none;
+    }
+
+    .switch a:hover {
+      text-decoration: underline;
+    }
+
+    /* ERROS */
+    .error {
+      color: red;
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ANIMAÇÃO */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -114,25 +147,255 @@
       }
     }
   </style>
+
   <body>
     <main>
-      <section class="cadastro ativo">
-        <form action="">
-          <input type="text" name="nome" id="nome" placeholder="nome" />
-          <input type="text" name="email" id="email" placeholder="email" />
-          <input type="password" name="senha" id="senha" placeholder="senha" />
-          <input type="submit" value="Cadastrar"/>
-          <p> J</p>
+      <section class="card cadastro ativo">
+        <form onsubmit="event.preventDefault()">
+          <input type="text" name="nome" placeholder="Nome" />
+          <span class="error" id="error-nome"></span>
+          <input type="text" name="email" placeholder="Email" />
+          <span class="error" id="error-email"></span>
+          <div class="senha-wrapper">
+            <input type="password" name="senha" placeholder="Senha" />
+            <span
+              class="toggleSenha"
+              style="padding: 15px; border-radius: 0 20px 20px 0"
+              onclick="toggleSenha(this)"
+              >👀</span
+            >
+          </div>
+          <span class="error" id="error-senha"></span>
+          <input
+            type="submit"
+            value="Cadastrar"
+            onclick="if(ValidarCadastro()){ cadastrar(); }"
+          />
         </form>
+        <p class="switch">
+          Já tem uma conta?
+          <a href="#" onclick="trocar('login')">Login</a>
+        </p>
       </section>
-      <section class="login">
-        <form action="">
-          <input type="text" name="email" id="email" placeholder="email" />
-          <input type="password" name="senha" id="senha" placeholder="senha" />
-          <input type="submit" value="Login" />
+      <section class="card login">
+        <form onsubmit="event.preventDefault()">
+          <input type="email" name="email" value="email" placeholder="Email" />
+          <span class="error" id="error-email-login"></span>
+          <input
+            type="password"
+            name="senha"
+            value="senha"
+            placeholder="Senha"
+          />
+          <span class="error" id="error-senha-login"></span>
+          <input type="submit" value="Entrar" onclick="login()" />
         </form>
+
+        <p class="switch">
+          Ainda não tem conta?
+          <a href="#" onclick="trocar('cadastro')">Criar conta</a>
+        </p>
       </section>
     </main>
+
+    <script>
+      //#region Cadastro
+      let nomeCadastro = document.querySelector(".cadastro input[name='nome']");
+      let emailCadastro = document.querySelector(
+        ".cadastro input[name='email']"
+      );
+      let senhaCadastro = document.querySelector(
+        ".cadastro input[name='senha']"
+      );
+      var userCadastro = [
+        {
+          nome: "admin",
+          email: "admin@admin.com",
+          senha: "admin",
+        },
+      ];
+
+      // Cadastro
+
+      function cadastrar() {
+        cadastrados.push({
+          nome: nomeCadastro.value,
+          email: emailCadastro.value,
+          senha: senhaCadastro.value,
+        });
+        alert("Cadastro realizado com sucesso!");
+      }
+
+      //#region Validações
+      function ValidarCadastro() {
+        document.getElementById("error-nome").innerHTML = "";
+        document.getElementById("error-email").innerHTML = "";
+        document.getElementById("error-senha").innerHTML = "";
+
+        if (nomeCadastro.value == "") {
+          document.getElementById("error-nome").innerHTML =
+            "O nome não pode ser vazio";
+          return false;
+        } else if (
+          emailCadastro.value == "" ||
+          ValidarEmail(emailCadastro) == false
+        ) {
+          if (
+            emailCadastro.value == "" &&
+            ValidarEmail(emailCadastro) == false
+          ) {
+            document.getElementById("error-email").innerHTML =
+              "O email não pode ser vazio";
+          } else if (ValidarEmail(emailCadastro) == false) {
+            document.getElementById("error-email").innerHTML =
+              "O email não é válido";
+            document.querySelector("input[type='password']").value = "";
+          }
+          return false;
+        } else if (senhaCadastro.value == "") {
+          document.getElementById("error-senha").innerHTML =
+            "A senha não pode ser vazia";
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      //Validar Email
+      function ValidarEmail(emailCadastro) {
+        if (!emailCadastro) return false;
+        let email = "";
+        if (typeof emailCadastro === "string") {
+          email = emailCadastro;
+        } else if (emailCadastro.value !== undefined) {
+          email = emailCadastro.value;
+        } else {
+          return false;
+        }
+
+        var exclude = /[^@.\w]|^[.-]{2}|[@.]{2}|(@)[^@]*\1/i;
+        var check = /@[a-zA-Z0-9-.]+./i;
+        var checkend = /[a-zA-Z]{2,3}$/i;
+
+        if (
+          email.search(exclude) != -1 ||
+          email.search(check) == -1 ||
+          email.search(checkend) == -1
+        ) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+
+      // Validação de Senha
+      function validarSenha(senha) {
+        const erros = [];
+
+        if (senha.length < 6) erros.push("Mínimo 6 caracteres");
+        if (!/[A-Z]/i.test(senha)) erros.push("Falta uma letra");
+        if (!/[0-9]/.test(senha)) erros.push("Falta um número");
+        if (!/[\*\@\#\!\?\.\-\_]/.test(senha))
+          erros.push("Falta caractere especial (* @ # ! ? . - _)");
+
+        return {
+          ok: erros.length === 0,
+          erros: erros,
+        };
+      }
+      senhaCadastro.addEventListener("input", () => {
+        const resultado = validarSenha(senhaCadastro.value);
+        document.getElementById("error-senha").innerText =
+          resultado.erros.join(" • ");
+      });
+
+      // mostrar senha
+      function toggleSenha(icone) {
+        const input = icone.previousElementSibling;
+
+        if (input.type === "password") {
+          input.type = "text";
+          icone.textContent = "😎";
+        } else {
+          input.type = "password";
+          icone.textContent = "👀";
+        }
+      }
+
+      //#endregion
+      //#endregion
+      //#region Login
+      var tentarLogar ={};
+
+      function login() {
+        let emailElem = document.querySelector(
+          ".login form input[name='email']"
+        );
+        let senhaElem =
+          document.querySelector(".login form input[name='senha']") ||
+          document.querySelector(".login form input[type='password']");
+        let emailLogin = emailElem ? emailElem.value.trim() : "";
+        let senhaLogin = senhaElem ? senhaElem.value : "";
+
+        let errorEmail = document.getElementById("error-email-login");
+        let errorSenha = document.getElementById("error-senha-login");
+
+        if (errorEmail) errorEmail.innerHTML = "";
+        if (errorSenha) errorSenha.innerHTML = "";
+
+        if (emailLogin == "") {
+          if (errorEmail) errorEmail.innerHTML = "O email não pode ser vazio";
+          return false;
+        } else if (ValidarEmail(emailLogin) == false) {
+          if (errorEmail) errorEmail.innerHTML = "O email não é válido";
+          return false;
+        } else if (senhaLogin == "") {
+          if (errorSenha) errorSenha.innerHTML = "A senha não pode ser vazia";
+          return false;
+        }
+
+        tentarLogar = { email: emailLogin, senha: senhaLogin }
+
+        if (VerificarSeExiste(tentarLogar)) {
+          alert("Logado com sucesso");
+          setTimeout(() => {
+            window.location.href = "recepcao.html";
+          }, 1000);
+          return true;
+        } else {
+          alert("Email ou senha incorretos");
+          return false;
+        }
+      }
+
+      function VerificarSeExiste() {
+        return userCadastro.some(
+          (user) =>
+            user.email === tentarLogar.email && user.senha === tentarLogar.senha
+        );
+        setTimeout(() => {
+          mensagem();
+          window.location.href = "recepcao.html";
+        }, 100);
+      }
+
+      function mensagem() {
+        if (VerificarSeExiste() == true) {
+          alert("Logado com sucesso");
+        } else {
+          alert("Email ou senha incorretos");
+        }
+      }
+
+      //#endregion
+      //#region Troca Acesso
+      function trocar(tipo) {
+        document.querySelector(".cadastro").classList.remove("ativo");
+        document.querySelector(".login").classList.remove("ativo");
+
+        document.querySelector("." + tipo).classList.add("ativo");
+      }
+      //#endregion
+    </script>
   </body>
-  <script></script>
 </html>
