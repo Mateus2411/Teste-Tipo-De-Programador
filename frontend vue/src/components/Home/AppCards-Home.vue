@@ -1,8 +1,10 @@
 <script setup>
+
 defineProps({
   titulo: String,
   descricao: String,
 })
+
 let Objetivos = [
   {
     id: 1,
@@ -23,12 +25,14 @@ let Objetivos = [
       'Desenvolver projetos, definitivamente você ja deve ter pensado em fazer algo grande mas quando olhou mais de perto percebeu que nao tem como (por agora)',
   },
 ]
+
+
 </script>
 <template>
   <main>
     <section>
       <div class="cards-conteiner">
-        <div v-for="card in Objetivos" :key="card.id">
+        <div v-for="card in Objetivos" :key="card.id" class="card">
           <h3>{{ card.titulo }}</h3>
           <p>{{ card.descricao }}</p>
         </div>

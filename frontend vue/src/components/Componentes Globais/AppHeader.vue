@@ -1,5 +1,25 @@
 <script setup>
+import { onMounted, onBeforeUnmount } from 'vue'
 import logoIF from '@/assets/if-design-svgrepo-com.svg'
+
+function handleScroll() {
+  const percent = window.scrollY / (document.body.scrollHeight - window.innerHeight)
+
+  if (percent > 0.2) {   // 0.2 = 20%
+    document.querySelector('header').classList.add('hidden')
+  } else {
+    document.querySelector('header').classList.remove('hidden')
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll)
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
+
 </script>
 <template>
   <header>
@@ -11,7 +31,7 @@ import logoIF from '@/assets/if-design-svgrepo-com.svg'
     <div class="links">
       <ul>
         <li>
-          <router-link  class="active" to="/">Home</router-link>
+          <router-link class="active" to="/">Home</router-link>
         </li>
         <li>
           <router-link to="/">IA's</router-link>
@@ -33,40 +53,59 @@ import logoIF from '@/assets/if-design-svgrepo-com.svg'
     'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-decoration: none;
   list-style: none;
+  scroll-behavior: smooth;
 }
+
 header {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background-color: #f8f9fa;
-  padding: 1.5vw 4vw;
-  margin-inline: 4vw;
-  border-radius: 20px;
-  margin-top: 1.3vw;
 
-  border: 3px solid transparent;
+  width: 90%;
+  padding: 1.5vw 4vw;
+
+  background-color: #f8f9fa;
+  border-radius: 20px;
+
   background:
-    linear-gradient(#00000012, #00000012) padding-box,
-    linear-gradient(90deg, #00000012, #00000012) border-box;
+    linear-gradient(#9c9c9c, #707070) padding-box,
+    linear-gradient(90deg, #9c9c9c, #707070) border-box;
+
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 99999;
 }
+
+header.hidden {
+  opacity: 0;
+  transform: translate(-50%, -40px);
+  pointer-events: none;
+}
+
 header .links ul {
   display: flex;
   gap: 4vw;
   margin-right: 2vw;
   cursor: pointer;
 }
-header .links ul li a{
+
+header .links ul li a {
   font-size: large;
   font-weight: bolder;
-  color: black;
+  color: white;
 }
-.active{
+
+.active {
   background: rgba(0, 0, 0, 0.31);
   padding: 0.8vw 1vw;
   border-radius: 20px;
 }
-.active a{
+
+.active a {
   color: white;
 }
 </style>
