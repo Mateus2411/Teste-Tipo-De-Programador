@@ -15,15 +15,17 @@
   text-decoration: none;
   list-style: none;
 }
+
 /*CSS*/
-footer{
+footer {
   text-align: center;
   align-items: center;
   display: flex;
   justify-content: center;
   margin-top: 10%;
 }
-footer p{
+
+footer p {
   margin-bottom: 0;
   display: flex;
   justify-content: center;
@@ -32,8 +34,7 @@ footer p{
   background-color: #333;
   color: #fff;
   text-align: center;
-  padding: 1rem 1rem 5vw 1rem;
+  padding: 1rem;
   width: 100%;
-  position: fixed;
 }
 </style>

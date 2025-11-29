@@ -34,10 +34,10 @@ onBeforeUnmount(() => {
           <router-link class="active" to="/">Home</router-link>
         </li>
         <li>
-          <router-link to="/">IA's</router-link>
+          <router-link to="/ias">IA's</router-link>
         </li>
         <li>
-          <router-link to="/">Sites</router-link>
+          <router-link to="/cadastrar">Cadastrar</router-link>
         </li>
       </ul>
     </div>
