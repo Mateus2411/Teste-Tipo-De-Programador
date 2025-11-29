@@ -1,6 +1,7 @@
 <script setup>
 import AppHeader from './components/Componentes Globais/AppHeader.vue'
 import AppFooter from './components/Componentes Globais/AppFooter.vue'
+
 </script>
 <template>
   <div id="layout">

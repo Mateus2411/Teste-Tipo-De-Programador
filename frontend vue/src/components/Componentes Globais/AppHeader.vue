@@ -5,7 +5,8 @@ import logoIF from '@/assets/if-design-svgrepo-com.svg'
 function handleScroll() {
   const percent = window.scrollY / (document.body.scrollHeight - window.innerHeight)
 
-  if (percent > 0.2) {   // 0.2 = 20%
+  if (percent > 0.2) {
+    // 0.2 = 20%
     document.querySelector('header').classList.add('hidden')
   } else {
     document.querySelector('header').classList.remove('hidden')
@@ -24,17 +25,12 @@ onBeforeUnmount(() => {
 <template>
   <header>
     <div>
-      <router-link to="/">
         <img :src="logoIF" alt="Logo IF" />
-      </router-link>
     </div>
     <div class="links">
       <ul>
         <li>
-          <router-link class="active" to="/">Home</router-link>
-        </li>
-        <li>
-          <router-link to="/ias">IA's</router-link>
+          <router-link to="/">Home</router-link>
         </li>
         <li>
           <router-link to="/cadastrar">Cadastrar</router-link>
@@ -76,7 +72,9 @@ header {
     linear-gradient(#9c9c9c, #707070) padding-box,
     linear-gradient(90deg, #9c9c9c, #707070) border-box;
 
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
   z-index: 99999;
 }
 
@@ -99,13 +97,10 @@ header .links ul li a {
   color: white;
 }
 
-.active {
-  background: rgba(0, 0, 0, 0.31);
-  padding: 0.8vw 1vw;
-  border-radius: 20px;
-}
-
-.active a {
-  color: white;
+.router-link-exact-active {
+  background: rgba(0, 0, 0, 0.823);
+  padding: 1vw 1.2vw;
+  border-radius: 15px;
+  color: white !important;
 }
 </style>
