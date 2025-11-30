@@ -1,11 +1,10 @@
 <script setup>
 import { ref } from 'vue'
-
+import api from '@/axios'
+import { useRouter } from 'vue-router'
 // tela ativa (cadastro / login)
 const tela = ref('cadastro')
-
-// usuários cadastrados
-const cadastrados = ref([{ nome: 'admin', email: 'admin@admin.com', senha: 'admin' }])
+const router = useRouter()
 
 // CADASTRO
 const nomeCadastro = ref('')
@@ -47,7 +46,7 @@ function validarSenha(senha) {
 }
 
 // cadastrar
-function cadastrar() {
+async function cadastrar() {
   erroNome.value = ''
   erroEmail.value = ''
   erroSenha.value = ''
@@ -69,17 +68,23 @@ function cadastrar() {
     return
   }
 
-  cadastrados.value.push({
-    nome: nomeCadastro.value,
-    email: emailCadastro.value,
-    senha: senhaCadastro.value,
-  })
-
-  alert('Cadastro realizado com sucesso!')
+  try {
+    const res = await api.post('/usuarios', {
+      nome: nomeCadastro.value,
+      email: emailCadastro.value,
+      senha: senhaCadastro.value,
+    })
+    console.log('Cadastro realizado com sucesso:', res.data)
+  } catch (error) {
+    console.error('Erro ao cadastrar usuário:', error)
+    alert('Erro ao cadastrar usuário. Tente novamente mais tarde.')
+    return
+  }
+  router.push('/')
 }
 
 // login
-function login() {
+async function login() {
   erroLoginEmail.value = ''
   erroLoginSenha.value = ''
 
@@ -96,14 +101,15 @@ function login() {
     return
   }
 
-  const user = cadastrados.value.find(
-    (u) => u.email === emailLogin.value && u.senha === senhaLogin.value,
-  )
-
-  if (user) {
-    alert('Logado com sucesso!')
-  } else {
-    alert('Email ou senha incorretos')
+  try {
+    const res = await api.post('/login', {
+      email: emailLogin.value,
+      password: senhaLogin.value,
+    })
+    localStorage.setItem('token', res.data.token) // guarda JWT
+    router.push('/')
+  } catch (err) {
+    erroLoginSenha.value = err.response?.data?.msg || 'Email ou senha incorretos'
   }
 }
 function toggleSenhaCadastro() {
