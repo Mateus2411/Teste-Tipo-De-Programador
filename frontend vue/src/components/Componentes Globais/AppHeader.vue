@@ -5,8 +5,8 @@ import logoIF from '@/assets/if-design-svgrepo-com.svg'
 function handleScroll() {
   const percent = window.scrollY / (document.body.scrollHeight - window.innerHeight)
 
-  if (percent > 0.2) {
-    // 0.2 = 20%
+  if (percent > 0.1) {
+    // 0.1 = 10%
     document.querySelector('header').classList.add('hidden')
   } else {
     document.querySelector('header').classList.remove('hidden')

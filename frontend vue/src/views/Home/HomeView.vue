@@ -1,11 +1,8 @@
 <script setup>
-import AppHeader from '@/components/Componentes Globais/AppHeader.vue'
 // cards
 import AppCardsHome from '@/components/Home/AppCards-Home.vue'
 </script>
 <template>
-  <app-header />
-
   <main>
     <section class="s1">
       <div>

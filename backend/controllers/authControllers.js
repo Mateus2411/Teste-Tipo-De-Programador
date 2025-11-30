@@ -19,14 +19,14 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await findUserByEmail(email);
-    if (!user) return res.status(400).json({ msg: "Email não encontrado" });
+    const emailUser = await findUserByEmail(email);
+    if (!emailUser) return res.status(400).json({ msg: "Email não encontrado" });
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, emailUser.password);
     if (!isMatch) return res.status(400).json({ msg: "Senha incorreta" });
 
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, user: { id: user.id, username: user.username, email: user.email } });
+    const token = jwt.sign({ id: emailUser.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    res.json({ token, user: { id: emailUser.id, username: emailUser.username, email: emailUser.email } });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

@@ -26,7 +26,7 @@ const mostrarSenhaLogin = ref(false)
 function ValidarEmail(email) {
   var exclude = /[^@.\w]|^[.-]{2}|[@.]{2}|(@)[^@]*\1/i
   var check = /@[a-zA-Z0-9-.]+./i
-  var checkend = /[a-zA-Z]{2,3}$/i
+  var checkend = /com$/i
   return !(
     email.search(exclude) !== -1 ||
     email.search(check) === -1 ||
@@ -69,18 +69,22 @@ async function cadastrar() {
   }
 
   try {
-    const res = await api.post('/usuarios', {
-      nome: nomeCadastro.value,
+    const res = await api.post('/register', {
+      username: nomeCadastro.value,
       email: emailCadastro.value,
-      senha: senhaCadastro.value,
+      password: senhaCadastro.value,
     })
     console.log('Cadastro realizado com sucesso:', res.data)
+    alert('Cadastro realizado com sucesso!')
+    router.push('/')
   } catch (error) {
     console.error('Erro ao cadastrar usuário:', error)
-    alert('Erro ao cadastrar usuário. Tente novamente mais tarde.')
-    return
+    if (error.response?.data?.msg) {
+      erroEmail.value = error.response.data.msg
+    } else {
+      alert('Erro ao cadastrar usuário. Tente novamente mais tarde.')
+    }
   }
-  router.push('/')
 }
 
 // login
@@ -101,14 +105,23 @@ async function login() {
     return
   }
 
+  console.log('Tentando login com email:', emailLogin.value)
+  console.log('Dados enviados:', { email: emailLogin.value, password: senhaLogin.value })
+
   try {
     const res = await api.post('/login', {
       email: emailLogin.value,
       password: senhaLogin.value,
     })
-    localStorage.setItem('token', res.data.token) // guarda JWT
+    console.log('Resposta do login:', res)
+    console.log('Token recebido:', res.data.token)
+    localStorage.setItem('token', res.data.token)
+    alert('Logado com sucesso!')
     router.push('/')
   } catch (err) {
+    console.error('Erro no login:', err)
+    console.error('Detalhes do erro:', err.response?.data)
+    console.error('Status do erro:', err.response?.status)
     erroLoginSenha.value = err.response?.data?.msg || 'Email ou senha incorretos'
   }
 }
