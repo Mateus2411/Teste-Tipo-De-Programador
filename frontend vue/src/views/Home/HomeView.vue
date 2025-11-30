@@ -1,4 +1,5 @@
 <script setup>
+
 // cards
 import AppCardsHome from '@/components/Home/AppCards-Home.vue'
 </script>
@@ -15,7 +16,6 @@ import AppCardsHome from '@/components/Home/AppCards-Home.vue'
       </div>
       <div class="img"></div>
     </section>
-
     <section class="s2">
       <h2>Objetivos de aprendizagem:</h2>
       <app-cards-home />

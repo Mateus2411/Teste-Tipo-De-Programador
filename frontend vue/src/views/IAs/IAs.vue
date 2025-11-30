@@ -1,4 +1,34 @@
-<script setup></script>
+<script setup>
+import { onMounted, ref } from 'vue'
+import AppIAs from '@/components/IAs/AppIAs.vue'
+
+const title = ref(null)
+
+onMounted(() => {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        title.value.style.animation =
+          "typing 3s steps(45) forwards, blink .7s infinite";
+        observer.unobserve(title.value) // só anima uma vez
+      }
+    })
+  })
+
+  observer.observe(title.value)
+
+  // Verifica interseções iniciais (caso o elemento já esteja visível)
+  const initialEntries = observer.takeRecords()
+  initialEntries.forEach(entry => {
+    if (entry.isIntersecting) {
+      title.value.style.animation =
+        "typing 3s steps(45) forwards, blink .7s infinite";
+      observer.unobserve(title.value)
+    }
+  })
+})
+</script>
+
 <template>
   <section class="s1">
     <div>
@@ -13,16 +43,24 @@
     </div>
     <div class="img"></div>
   </section>
+  <section class="s2">
+    <div id="escrita-animada">
+      <h2 ref="title">
+        O que diferencia uma IA das outras?
+      </h2>
+    </div>
+    <AppIAs />
+  </section>
+
 </template>
-<style scoped>
+<style>
 section.s1 {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   min-height: 80vh;
   /* hero grande */
-  padding: 0 0;
+  padding: 0 1.4vw;
   gap: 3vw;
   margin-top: 5vw;
 }
@@ -38,7 +76,7 @@ section.s1 .img {
   border-radius: 20px;
 }
 
-section.s1 > div {
+section.s1>div {
   flex: 1;
   text-align: left;
   /* textos à direita */
@@ -65,7 +103,8 @@ section.s1 a {
   display: inline-block;
   text-decoration: none;
 }
-@media (max-width: 865px){
+
+@media (max-width: 865px) {
   section.s1 {
     margin-top: 10vw;
   }
@@ -78,7 +117,7 @@ section.s1 a {
     margin-top: 20vw;
   }
 
-  section.s1 > div {
+  section.s1>div {
     margin-bottom: 2rem;
   }
 
@@ -90,5 +129,48 @@ section.s1 a {
 
 section.s1 div {
   background-image: url();
+}
+
+.s2 {
+  display: flex;
+  width: 100%;
+  padding: 2.5vw 5vw;
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#escrita-animada h2 {
+  font-family: "Open Sans", sans-serif;
+  font-size: 1.8rem;
+  max-width: 95%;
+  font-weight: 500;
+  color: #333333;
+  margin-right: 2rem;
+
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #333;
+  width: 0;
+}
+
+
+/* animação da escrita */
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+/* cursor piscando */
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
 </style>
