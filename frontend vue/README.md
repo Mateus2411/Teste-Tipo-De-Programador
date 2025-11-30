@@ -1,44 +1,52 @@
-# .
+# Frontend - README
 
-This template should help get you started developing with Vue 3 in Vite.
+Este README é para quem quiser **rodar e testar o frontend** desenvolvido em **Vue 3 + Vite**.
 
-## Recommended IDE Setup
+---
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## 🚀 Sobre o Projeto
 
-## Recommended Browser Setup
+Template simples em **Vue 3** utilizando **Vite**, ideal para rodar localmente e testar rapidamente.
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd) 
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+---
 
-## Customize configuration
+## 🧰 Requisitos
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Certifique-se de ter instalado:
 
-## Project Setup
+- **Node.js** (versão LTS)
+- **npm** (vem junto com o Node)
+- Navegador atualizado
+
+---
+
+## 💻 IDE Recomendada
+
+- **[VS Code](https://code.visualstudio.com/)**
+- Extensão **[Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)**  
+  *(lembrar de desabilitar o Vetur)*
+
+---
+
+## 🌐 Setup recomendado no navegador
+
+### Navegadores baseados em Chromium (Chrome, Edge, Brave...)
+
+- **[Vue.js Devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)**
+- Ativar **Custom Object Formatter**:
+  [http://bit.ly/object-formatters](http://bit.ly/object-formatters)
+
+### Firefox
+
+- **[Vue.js Devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)**
+- Ativar **Custom Object Formatter**:  
+[https://fxdx.dev/firefox-devtools-custom-object-formatters/](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+
+---
+
+## ⚙️ Instalação do Projeto
+
+Para instalar todas as dependências:
 
 ```sh
 npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
