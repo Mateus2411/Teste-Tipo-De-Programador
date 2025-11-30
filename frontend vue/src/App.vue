@@ -30,6 +30,5 @@ body,
 
 main {
   flex: 1;
-  /* EMPURRA o footer pro fundo */
 }
 </style>
