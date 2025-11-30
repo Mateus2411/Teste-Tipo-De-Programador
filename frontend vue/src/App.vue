@@ -32,3 +32,18 @@ main {
   flex: 1;
 }
 </style>
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+#app {
+  min-height: 100vh;
+}
+</style>

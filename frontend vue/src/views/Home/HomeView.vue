@@ -90,7 +90,9 @@ main {
   background: linear-gradient(180deg, #f8f9fa 0%, #ffffff 100%);
   color: #2d2d2d;
   min-height: 100vh;
+  width: 100%;
   padding-top: 8rem;
+  flex: 1;
 }
 
 /* ---------- SEÇÃO HERO (S1) ---------- */

@@ -143,8 +143,8 @@ section.s1 div {
 
 #escrita-animada h2 {
   font-family: "Open Sans", sans-serif;
-  font-size: 1.8rem;
-  max-width: 95%;
+  font-size: 2rem;
+  max-width: 100%;
   font-weight: 500;
   color: #333333;
   margin-right: 2rem;
@@ -154,8 +154,24 @@ section.s1 div {
   border-right: 2px solid #333;
   width: 0;
 }
+@media (max-width: 1000px) {
+  .s2 {
+    flex-direction: column;
+    text-align: center;
+  }
 
+  #escrita-animada h2 {
+    margin-bottom: 2rem;
+    margin-right: 0;
+    font-size: 5vw;
+  }
+}
 
+@media (max-width: 700px) {
+  #escrita-animada h2 {
+    font-size: 5vw;
+  }
+}
 /* animação da escrita */
 @keyframes typing {
   from {

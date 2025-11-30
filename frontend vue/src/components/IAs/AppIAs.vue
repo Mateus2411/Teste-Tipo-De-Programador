@@ -31,7 +31,12 @@ const cards = [
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  max-width: clamp(55%, 60%, 65%);
+  max-width: clamp(55%, 60%, 100%);
+}
+@media (min-width: 300px) {
+  .cards-container {
+    max-width: 100%;
+  }
 }
 
 .cards-container .card {
