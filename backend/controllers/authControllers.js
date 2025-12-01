@@ -43,7 +43,6 @@ const usersDb = async (req, res) => {
       });
     });
     res.json(users);
-    console.log(users);
   } catch (err) {
     res.status(500).json({ error: 'Erro ao buscar usuários' });
   }
