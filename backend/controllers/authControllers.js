@@ -1,6 +1,8 @@
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { createUser, findUserByEmail } = require('../models/userModel');
+const router = require('../routes/auth');
+const db = require('../config/db');
 
 const register = async (req, res) => {
   const { username, email, password } = req.body;
@@ -32,4 +34,19 @@ const login = async (req, res) => {
   }
 };
 
-module.exports = { register, login };
+const usersDb = async (req, res) => {
+  try {
+    const users = await new Promise((resolve, reject) => {
+      db.all('SELECT id, username, email, created_at FROM users', (err, rows) => {
+        if (err) reject(err);
+        else resolve(rows);
+      });
+    });
+    res.json(users);
+    console.log(users);
+  } catch (err) {
+    res.status(500).json({ error: 'Erro ao buscar usuários' });
+  }
+};
+
+module.exports = { register, login, usersDb };
