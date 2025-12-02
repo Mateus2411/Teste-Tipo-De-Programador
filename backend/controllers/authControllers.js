@@ -41,7 +41,7 @@ const login = async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ error: err.message });
-    res
+    res;
   }
 };
 
@@ -63,6 +63,16 @@ const usersDb = async (req, res) => {
 };
 
 const coffee = async (req, res) => {
-  res.status(418).json({ error: "I'm a teapot", message: "O servidor se recusa a preparar o café" });
-}
-module.exports = { register, login, usersDb };
+  try {
+    res.status(418).json({
+      error: "I'm a teapot",
+      mensage: "O servidor se recusa a preparar o café",
+    });
+  } catch (err) {
+    res.status(418).json({
+      error: "I'm a teapot",
+      mensage: "O servidor se recusa a preparar o café",
+    });
+  }
+};
+module.exports = { register, login, usersDb, coffee };

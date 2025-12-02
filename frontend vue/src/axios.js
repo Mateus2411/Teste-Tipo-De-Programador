@@ -12,7 +12,7 @@ api.interceptors.request.use((config) => {
 })
 
 axios
-  .get('http://localhost:5000/banco')
+  .get('http://localhost:5000/api/auth/coffee')
   .then((res) => console.log('Resposta 418:', res.data))
   .catch((err) => console.log(err))
 export default api
