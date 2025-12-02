@@ -146,12 +146,8 @@ function toggleSenhaLogin() {
       <span class="erro">{{ erroEmail }}</span>
 
       <div class="senha-container">
-        <input
-          v-model="senhaCadastro"
-          :type="mostrarSenhaCadastro ? 'text' : 'password'"
-          placeholder="Senha"
-          class="input-senha"
-        />
+        <input v-model="senhaCadastro" :type="mostrarSenhaCadastro ? 'text' : 'password'" placeholder="Senha"
+          class="input-senha" />
         <span class="toggle-senha" @click="toggleSenhaCadastro">
           {{ mostrarSenhaCadastro ? '😎' : '👀' }}
         </span>
@@ -174,12 +170,8 @@ function toggleSenhaLogin() {
       <span class="erro">{{ erroLoginEmail }}</span>
 
       <div class="senha-container">
-        <input
-          v-model="senhaLogin"
-          :type="mostrarSenhaLogin ? 'text' : 'password'"
-          placeholder="Senha"
-          class="input-senha"
-        />
+        <input v-model="senhaLogin" :type="mostrarSenhaLogin ? 'text' : 'password'" placeholder="Senha"
+          class="input-senha" />
         <span class="toggle-senha" @click="toggleSenhaLogin">
           {{ mostrarSenhaLogin ? '😎' : '👀' }}
         </span>
@@ -270,12 +262,6 @@ function toggleSenhaLogin() {
 .senha-container {
   display: flex;
   align-items: stretch;
-  width: 100%;
-  border-radius: 10px;
-  border: 1.5px solid #e0e0e0;
-  background: #f8f9fa;
-  transition: all 0.2s ease;
-  margin-bottom: 0.5rem;
   position: relative;
 }
 
@@ -290,25 +276,26 @@ function toggleSenhaLogin() {
   border: none;
   background: transparent;
   outline: none;
-  padding: 0.9rem 1rem;
   padding-right: 0.25rem;
   color: #1a1a1a;
   font-size: 1rem;
   font-family: inherit;
   line-height: 1.5;
   box-sizing: border-box;
+  padding: 0px 100px 0px 0px;
 }
 
 .input-senha::placeholder {
   color: #999;
 }
 
+
 .toggle-senha {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0.9rem 0.75rem;
-  margin: 0;
+  margin: 2px 0px 0px 200px;
   cursor: pointer;
   user-select: none;
   font-size: 1.3rem;
@@ -318,6 +305,7 @@ function toggleSenhaLogin() {
   line-height: 1;
   flex-shrink: 0;
   box-sizing: border-box;
+  position: absolute;
 }
 
 .toggle-senha:hover {
@@ -389,6 +377,7 @@ function toggleSenhaLogin() {
     opacity: 0;
     transform: translateY(10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
