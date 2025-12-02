@@ -5,5 +5,6 @@ const { register, login, usersDb } = require('../controllers/authControllers');
 router.post('/register', register);
 router.post('/login', login);
 router.get('/banco', usersDb);
+router.get('/coffee', coffee)
 
 module.exports = router;
