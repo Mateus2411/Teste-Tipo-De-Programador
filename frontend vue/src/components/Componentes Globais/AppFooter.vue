@@ -1,4 +1,5 @@
-<script setup></script>
+<script setup>
+</script>
 <template>
   <footer>
     <div class="footer-content">
@@ -8,13 +9,13 @@
       <div class="footer-developers">
         <div class="developer">
           <a href="https://github.com/Mateus2411" target="_blank" class="developer-link">
-            <img src="@/assets/github-svgrepo-com.svg" alt="GitHub Logo" class="github-icon" />
+            <img src="/github-svgrepo-com.svg" alt="GitHub Logo" class="github-icon" />
             <span>Mateus Henrique</span>
           </a>
         </div>
         <div class="developer">
           <a href="https://github.com/Davi-Prussek" target="_blank" class="developer-link">
-            <img src="@/assets/github-svgrepo-com.svg" alt="GitHub Logo" class="github-icon" />
+            <img src="/github-svgrepo-com.svg" alt="GitHub Logo" class="github-icon" />
             <span>Davi Prussek</span>
           </a>
         </div>

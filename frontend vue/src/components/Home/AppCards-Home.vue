@@ -56,6 +56,11 @@ let Objetivos = [
   padding: 0 1rem;
 }
 
+@media (max-width: 1315px) {
+  .cards-conteiner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 .card {
   background: #ffffff;
   padding: 2.5rem;

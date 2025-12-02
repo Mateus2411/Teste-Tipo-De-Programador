@@ -244,6 +244,7 @@ section.s4 {
   max-width: 1200px;
   margin: 6rem auto;
   padding: 3rem 2rem;
+  align-items: center;
 }
 
 section.s4 h2 {
@@ -259,6 +260,8 @@ section.s4 ul {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  align-items: center;
+  padding: 0;
 }
 
 section.s4 ul li {

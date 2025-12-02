@@ -1,6 +1,5 @@
 <script setup>
 import { onMounted, onBeforeUnmount, ref, watch } from 'vue'
-import logoIF from '@/assets/if-design-svgrepo-com.svg'
 
 function handleScroll() {
   const percent = window.scrollY / (document.body.scrollHeight - window.innerHeight)
@@ -39,7 +38,7 @@ watch(menuOpen, (open) => {
 <template>
   <header>
     <div>
-      <img :src="logoIF" alt="Logo IF" />
+      <img src="/if-design-svgrepo-com.svg" alt="Logo IF" />
     </div>
     <div class="links" :class="{ open: menuOpen }">
       <button
@@ -89,7 +88,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  width: 90%;
+  width: 100%;
   padding: 1.5vw 4vw;
 
   background-color: #f8f9fa;
@@ -162,8 +161,8 @@ header .links ul li a {
   header {
     padding: 12px 16px;
   }
-
   header .links ul {
+
     position: fixed;
     top: 0;
     right: 0;
