@@ -5,7 +5,7 @@ defineProps({
   descricao: String,
 })
 
-let Objetivos = [
+let Objetivos =[
   {
     id: 1,
     titulo: 'Aprender',
@@ -16,7 +16,7 @@ let Objetivos = [
     id: 2,
     titulo: 'Praticar',
     descricao:
-      'Muitas das coisas requerem pratica, e programação nao e diferente te forçando a praticar',
+    'Muitas das coisas requerem pratica, e programação nao e diferente te forçando a praticar',
   },
   {
     id: 3,
@@ -28,27 +28,35 @@ let Objetivos = [
     id: 4,
     titulo: 'Testar',
     descricao:
-      'Testar seus conhecimentos, nada melhor do que testar o que aprendeu para ver se realmente entendeu e esta apto a seguir em frente',
-  }
+    'Testar seus conhecimentos, nada melhor do que testar o que aprendeu para ver se realmente entendeu e esta apto a seguir em frente',
+  },
 ]
-
 
 </script>
 <template>
-  <main>
-    <section>
-      <div class="cards-conteiner">
-        <div v-for="card in Objetivos" :key="card.id" class="card">
-          <div class="card-icon">{{ card.id }}</div>
-          <h3>{{ card.titulo }}</h3>
-          <p>{{ card.descricao }}</p>
-        </div>
+  <section>
+    <h2>
+      Objetivos de aprendizagem:
+    </h2>
+    <div class="cards-conteiner">
+      <div v-for="card in Objetivos" :key="card.id" class="card">
+        <div class="card-icon">{{ card.id }}</div>
+        <h3>{{ card.titulo }}</h3>
+        <p>{{ card.descricao }}</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 </template>
 
 <style scoped>
+section h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #1a1a1a;
+  text-align: center;
+}
+
 .cards-conteiner {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -61,6 +69,7 @@ let Objetivos = [
     grid-template-columns: repeat(2, 1fr);
   }
 }
+
 .card {
   background: #ffffff;
   padding: 2.5rem;
@@ -146,6 +155,7 @@ let Objetivos = [
     opacity: 0;
     transform: translateY(20px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
