@@ -148,9 +148,9 @@ function toggleSenhaLogin() {
       <div class="senha-container">
         <input v-model="senhaCadastro" :type="mostrarSenhaCadastro ? 'text' : 'password'" placeholder="Senha"
           class="input-senha" />
-        <span class="toggle-senha" @click="toggleSenhaCadastro">
-          {{ mostrarSenhaCadastro ? '😎' : '👀' }}
-        </span>
+        <div class="toggle-senha" >
+          <span @click="toggleSenhaCadastro">{{ mostrarSenhaCadastro ? '😎' : '👀' }}</span>
+        </div>
       </div>
       <span class="erro">{{ erroSenha }}</span>
 
@@ -260,16 +260,13 @@ function toggleSenhaLogin() {
 
 /* ---------- CONTAINER DE SENHA ---------- */
 .senha-container {
+  width: 100%;
   display: flex;
+  justify-content: end;
   align-items: stretch;
   position: relative;
 }
 
-.senha-container:focus-within {
-  border-color: #4a73ff;
-  background: #ffffff;
-  box-shadow: 0 0 0 3px rgba(74, 115, 255, 0.1);
-}
 
 .input-senha {
   flex: 1;
@@ -295,11 +292,10 @@ function toggleSenhaLogin() {
   align-items: center;
   justify-content: center;
   padding: 0.9rem 0.75rem;
-  margin: 2px 0px 0px 200px;
-  cursor: pointer;
   user-select: none;
   font-size: 1.3rem;
   transition: all 0.2s ease;
+  cursor: pointer;
   background: transparent;
   border: none;
   line-height: 1;

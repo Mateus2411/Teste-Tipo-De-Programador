@@ -88,7 +88,7 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  width: 100%;
+  width: 90%;
   padding: 1.5vw 4vw;
 
   background-color: #f8f9fa;
@@ -162,7 +162,6 @@ header .links ul li a {
     padding: 12px 16px;
   }
   header .links ul {
-
     position: fixed;
     top: 0;
     right: 0;
@@ -178,7 +177,7 @@ header .links ul li a {
     padding: 5rem 1.5rem 2rem;
     gap: 1rem;
     margin-right: 0;
-    transform: translateX(100%);
+    transform: translateX(120%);
     transition: transform 0.3s ease;
     cursor: default;
     z-index: 100001;
@@ -186,7 +185,7 @@ header .links ul li a {
   }
 
   header .links.open ul {
-    transform: translateX(0);
+    transform: translateX(12%);
   }
 
   .menu-toggle {
@@ -216,9 +215,8 @@ header .links ul li a {
   }
 
   .menu-backdrop {
-    position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(255, 0, 0, 0.35);
     backdrop-filter: blur(1px);
     z-index: 100000;
   }
